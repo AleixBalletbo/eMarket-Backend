@@ -2,19 +2,22 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Task = require('./api/models/ProductsModel'), //created model loading here
+  Task = require('./backend/models/ProductsModel'), //created model loading here
   bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/eMarketDB'); 
+mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+    if (error) console.error(error);
+    else console.log('mongo connected');
+});
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/eMarketRoutes'); //importing route
+var routes = require('./backend/routes/eMarketRoutes'); //importing route
 routes(app); //register the route
 
 

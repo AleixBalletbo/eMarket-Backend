@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProductSchema = new Schema ({
-	name: String,
-	description: String,
-	price: Number,
-	owner: String
+	name: {type: String, required: true},
+	description: {type: String, required: true},
+	price: {type: Number, required: true},
+	owner: {type: String, required: true}
 });
 
-module.exports = mongoose.moodel('Products', ProductSchema);
+module.exports = mongoose.model('Products', ProductSchema);
