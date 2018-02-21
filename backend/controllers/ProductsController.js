@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
   Product = mongoose.model('Products');
 
 exports.list_all_products = function(req, res) {
-  Product.find({}).sort({createdAt: 'asc'}).exec(function(err, product) {
+  Product.find({}).sort({createdAt: 'desc'}).exec(function(err, product) {
     if (err)
       res.send(err);
     res.json(product);
